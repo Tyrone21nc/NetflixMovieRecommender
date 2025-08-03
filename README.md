@@ -6,15 +6,15 @@ I will use unsupervised learning
 ![unsupervised learning](image1.png)
 
 Note: Don't use all your data for the testing, it's not ideal. Check out week 5 video around 50 minutes in the video for explanation.
-    - instead use a split. Like 80-20, or 70-30
-    - Split the data into two parts:
-        - Training Set (e.g., 80%): Learn patterns
-        - Test Set (e.g., 20%): Evaluate performance on unseen data
+- instead use a split. Like 80-20, or 70-30
+- Split the data into two parts:
+    - Training Set (e.g., 80%): Learn patterns
+    - Test Set (e.g., 20%): Evaluate performance on unseen data
 
 But you will split your data into 3 groups:
-    - training set (70%)
-    - testing set (20%)
-    - validation set (10%)
+- training set (70%)
+- testing set (20%)
+- validation set (10%)
 ![model dev vs. model eval](image2.png)
 
 
