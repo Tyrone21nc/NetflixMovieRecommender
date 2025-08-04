@@ -6,15 +6,15 @@ I will use unsupervised learning
 ![unsupervised learning](image1.png)
 
 Note: Don't use all your data for the testing, it's not ideal. Check out week 5 video around 50 minutes in the video for explanation.
-    - instead use a split. Like 80-20, or 70-30
-    - Split the data into two parts:
-        - Training Set (e.g., 80%): Learn patterns
-        - Test Set (e.g., 20%): Evaluate performance on unseen data
+- instead use a split. Like 80-20, or 70-30
+- Split the data into two parts:
+    - Training Set (e.g., 80%): Learn patterns
+    - Test Set (e.g., 20%): Evaluate performance on unseen data
 
 But you will split your data into 3 groups:
-    - training set (70%)
-    - testing set (20%)
-    - validation set (10%)
+- training set (70%)
+- testing set (20%)
+- validation set (10%)
 ![model dev vs. model eval](image2.png)
 
 
@@ -76,6 +76,21 @@ For the training stage, since we chose 5 for groups (k = 5), we will have 5 trai
 
 
 
+
+
+
+
+for my training and testing I am planning on using the 80-20 rule, and then the k-fold validation for training dividing up my 80% into 5 groups (where k = 5). 
+
+For the training stage, since we chose 5 for groups (k = 5), we will have 5 training stages
+- During the first stage, treat your **first set** of 160 rows as the **testing** set. Then train the remaining 640 (other 4 groups) as the training set and then train them on that specific testing set.
+- During the second stage, treat your **second set** of 160 rows as the **testing** set. Then train on the remaining 640 rows.
+- During the third stage, follow the same process. Do this for the remaining training stages.
+
+
+To perform this, would I need to drop some columns (title,year,certificate,duration,genre,rating,description,stars,votes); Assume a column has been added called "watched". Also I will for the 80 percent, I will split in 5 groups and then use the first group for testing and the rest for training during the first stage, then during the second stage i'll use the 2nd group for testing and the rest for training. I will do this for all 5 stages. When testing/training at every stage the current testing group of rows will be the rows where their value for watched is one, and when that stage is complete their value can go back to zero then we make the next testing group in the next stage ones for the "watched" column and so on.
+
+But when testing/training at each stage, I will keep track of a score for each stage, then I will average it (add them together then divide by 5). Please show me what this could look like already. Also specify which classification model you use. Use the same classification model for the training/testing of the 5 stages.
 
 
 
