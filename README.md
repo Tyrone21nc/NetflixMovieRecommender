@@ -78,9 +78,9 @@ My model's acuracy with deciding the movies the user would watch was about 55% a
 Here is a result of the output:
 | Index | Title                            | Rating | Duration | Watched_Prob |
 |-------|----------------------------------|--------|----------|---------------|
-| 3357  | Thomas & Friends: All Engines Go | 2.1    | 30       | 0.553853      |
-| 3612  | The Hype House                   | 2.1    | 36       | 0.552913      |
-| 2970  | He's Expecting                   | 2.3    | 23       | 0.552815      |
-| 6897  | Until Dawn                       | 2.4    | 22       | 0.551904      |
-| 3041  | The Goop Lab                     | 2.5    | 30       | 0.549580      |
+| 3357  | Thomas & Friends: All Engines Go | 2.1    | 30       | 55%           |
+| 3612  | The Hype House                   | 2.1    | 36       | 55%           |
+| 2970  | He's Expecting                   | 2.3    | 23       | 55%           |
+| 6897  | Until Dawn                       | 2.4    | 22       | 55%           |
+| 3041  | The Goop Lab                     | 2.5    | 30       | 54.9%         |
 
