@@ -2,8 +2,8 @@
 
 link to the dataset: **[Netflix popular movie dataset](https://www.kaggle.com/datasets/narayan63/netflix-popular-movies-dataset)**
 
-I will use unsupervised learning
-![unsupervised learning](image1.png)
+I will use supervised learning
+![supervised learning](image1.png)
 
 Note: Don't use all your data for the testing, it's not ideal. Check out week 5 video around 50 minutes in the video for explanation.
 - instead use a split. Like 80-20, or 70-30
