@@ -1,19 +1,19 @@
 import pandas as pd
 import random
 
-from sklearn.model_selection import train_test_split, KFold
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LogisticRegression # used for k-fold testing and training
 from sklearn.metrics import precision_score, recall_score   # used for k-fold scoring
 from sklearn.impute import SimpleImputer
 
+##  used for some data visualzation
+import seaborn as sns
+import matplotlib.pyplot as plt
+##
+
 import numpy as np
-import ast
-import math
-from sklearn.metrics import mean_squared_error
 
 
 df = pd.read_csv('n_movies.csv')
@@ -120,6 +120,35 @@ df['watched_prob'] = probs
 
 # Recommend top 5 movies with highest watched probability
 recommendations = df.sort_values(by='watched_prob', ascending=False).head(5)
+df.to_csv("finalized.csv", index=False)
 
-print("Recommended movies to watch:")
-print(recommendations[['title', 'rating', 'duration', 'watched_prob']])
+# print("Recommended movies to watch:")
+# print(recommendations[['title', 'rating', 'duration', 'watched_prob']])
+
+
+# y_prob = model.predict_proba(X_test)[:, 1]
+# sns.histplot(y_prob, bins=20, kde=True)
+# plt.title("Model Prediction Probabilities")
+# plt.xlabel("Watched Probability")
+# plt.show()
+# testing model on whether it will predict if the movie will be watched
+new_movie = pd.DataFrame([{
+    'title': "Movie Title",
+    'year': 2024,
+    'certificate': 'PG-13',
+    'duration': 110,
+    'genre': 'Action',
+    'rating': 7.8,
+    'description': "An action-packed sci-fi adventure.",
+    'stars': "['Some producer', '| ', '    Stars:', 'Actor One, ', 'Actor Two, ']",                # or number of main actors?
+    'votes': 15000,
+    'watched': None,             # we don't know since a new prediction
+    'watched_prob': None         # what we are trying to get
+}])
+feature_cols = ['rating','duration']
+X_new = new_movie[feature_cols]
+prob = model.predict_proba(X_new)[0, 1]
+print(f"Predicted watched probability: {prob:.2%}") # {prob:.2%} trucates percentage values after the second decimal place
+print(f"Which means that based on the model and what it is testing on, there is a {prob:.2%} chance that the movie will be watched by the user")
+
+
