@@ -2,7 +2,6 @@ import pandas as pd
 import random
 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from sklearn.model_selection import StratifiedKFold
 from sklearn.linear_model import LogisticRegression # used for k-fold testing and training
 from sklearn.metrics import precision_score, recall_score   # used for k-fold scoring
@@ -119,11 +118,11 @@ probs = final_model.predict_proba(X_full_imputed)[:, 1]
 df['watched_prob'] = probs
 
 # Recommend top 5 movies with highest watched probability
-recommendations = df.sort_values(by='watched_prob', ascending=False).head(5)
+recommendations = df.sort_values(by='watched_prob', ascending=False).head(50)
 df.to_csv("finalized.csv", index=False)
 
-# print("Recommended movies to watch:")
-# print(recommendations[['title', 'rating', 'duration', 'watched_prob']])
+print("Recommended movies to watch:")
+print(recommendations[['title', 'rating', 'duration', 'watched_prob']])
 
 
 # y_prob = model.predict_proba(X_test)[:, 1]
@@ -148,7 +147,7 @@ new_movie = pd.DataFrame([{
 feature_cols = ['rating','duration']
 X_new = new_movie[feature_cols]
 prob = model.predict_proba(X_new)[0, 1]
-print(f"Predicted watched probability: {prob:.2%}") # {prob:.2%} trucates percentage values after the second decimal place
-print(f"Which means that based on the model and what it is testing on, there is a {prob:.2%} chance that the movie will be watched by the user")
+# print(f"Predicted watched probability: {prob:.2%}") # {prob:.2%} trucates percentage values after the second decimal place
+# print(f"Which means that based on the model and what it is testing on, there is a {prob:.2%} chance that the movie will be watched by the user")
 
 

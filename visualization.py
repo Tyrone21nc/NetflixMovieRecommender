@@ -25,13 +25,13 @@ df = pd.read_csv("finalized.csv")
 # plt.figure(figsize=(6, 4))  # this represents the window of the results
 # ax1 = sns.boxplot(x='watched', y='rating', data=df)
 # plt.title("Movie Rating by Watched Status")
-# styling the median value
+# # styling the median value
 # medians = df.groupby('watched')['rating'].median()
 # for i, median in enumerate(medians):
 #     ax1.text(i, median, f'{median:.2f}', ha='center', va='center',
 #              fontweight='bold', color='green', bbox=dict(facecolor='white'))
 # plt.show()
-# Second plot: Duration by Watched
+# # Second plot: Duration by Watched
 # plt.figure(figsize=(6, 4))
 # ax2 = sns.boxplot(x='watched', y='duration', data=df)
 # plt.title("Duration by Watched Status")
@@ -45,10 +45,10 @@ df = pd.read_csv("finalized.csv")
 
 
 # VISUAL THREE
-corr = df.corr(numeric_only=True)
-sns.heatmap(corr, annot=True, cmap='coolwarm')
-plt.title("Feature Correlation Heatmap")
-plt.show()
+# corr = df.corr(numeric_only=True)
+# sns.heatmap(corr, annot=True, cmap='coolwarm')
+# plt.title("Feature Correlation Heatmap")
+# plt.show()
 
 
 

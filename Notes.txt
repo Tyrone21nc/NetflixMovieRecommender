@@ -1,0 +1,184 @@
+# Netflix Movie Recommender
+
+link to the dataset: **[Netflix popular movie dataset](https://www.kaggle.com/datasets/narayan63/netflix-popular-movies-dataset)**
+
+I will use supervised learning
+![supervised learning](image1.png)
+
+Note: Don't use all your data for the testing, it's not ideal. Check out week 5 video around 50 minutes in the video for explanation.
+- instead use a split. Like 80-20, or 70-30
+- Split the data into two parts:
+    - Training Set (e.g., 80%): Learn patterns
+    - Test Set (e.g., 20%): Evaluate performance on unseen data
+
+But you will split your data into 3 groups:
+- training set (70%)
+- testing set (20%)
+- validation set (10%)
+![model dev vs. model eval](image2.png)
+
+
+## **Training and Testing Data**
+### Training
+Machine learning models are used to understand trends in data and making appropriate prediction based on it
+**for all these model trends, they use curved data**
+Underfit
+- high biases
+- data is curved but you are going in towards the data
+- the line is going through the curved data
+- biased towards linear regression
+- this causes the model to underperform
+- not complex enough
+Optimal
+- capturing general trend
+- sweet spot for complexity
+Overfit
+- trying to track every data point
+- high variance (too many variables)
+- really complicated
+- too complex
+- problem
+    - it memorizes instead of learning from the data so it will poorly perform with unseen data
+    - no room to learn from data
+    - too many variables as it is testing on every data point
+    
+
+Going back to the model testing and training:
+But you will split your data into 2 major groups:
+- training set (80%)
+    - k-fold validation
+- testing set (20%)
+Example:
+if we had 1000 rows of data, 80-20 is 800-200.
+- 200 is for testing set and is truely unseen data, use at the end to avoid overfitting
+- 800 is for training set and will be used in the form of k-fold validation (KFV or kfv)
+- for KFV, we decide on how many groups we want to split out training set into, also known as k (common values are between 5 and 10 inclusive). We choose 5
+- 800/5 is 160. We'll have 5 groups of 160 for training.
+
+**Training stage**
+For the training stage, since we chose 5 for groups (k = 5), we will have 5 training stages
+- During the first stage, treat your **first set** of 160 rows as the **testing** set. Then train the remaining 640 (other 4 groups) as the training set and then train them on that specific testing set.
+- During the second stage, treat your **second set** of 160 rows as the **testing** set. Then train on the remaining 640 rows.
+- During the third stage, follow the same process. Do this for the remaining training stages.
+- During each stage test your model using a metric (acuracy, mean square, etc...). Then you have 5 metric for 5 stages, then get the average of all these metric values. This prevents data leakage and overfitting.
+![k-cross validation](image3.png)
+
+### Testing
+- Then after you have your average metric, conduct your final testing with your sacred/unseen set (the 20%, 200 rows of data)
+
+## **Results**
+- If your model performs very well on training folds but poorly on validation folds, that’s a sign of overfitting.
+- A single train/test split can be:
+    - Unstable (performance can vary greatly depending on which data falls into the test set),
+    - Biased (it might not represent the true distribution of future data)
+
+
+## Results
+My model's acuracy with deciding the movies the user would watch was about 55% accurate. Not the ideal, it can definitely be better.
+Here is a result of the output:
+| Index | Title                            | Rating | Duration | Watched_Prob |
+|-------|----------------------------------|--------|----------|---------------|
+| 3357  | Thomas & Friends: All Engines Go | 2.1    | 30       | 55%           |
+| 3612  | The Hype House                   | 2.1    | 36       | 55%           |
+| 2970  | He's Expecting                   | 2.3    | 23       | 55%           |
+| 6897  | Until Dawn                       | 2.4    | 22       | 55%           |
+| 3041  | The Goop Lab                     | 2.5    | 30       | 54.9%         |
+
+
+
+#*************************************************************************************************#
+#*************************************************************************************************#
+#*************************************************************************************************#
+
+## Essential Question Notes:
+# From Learned Focused - https://learningfocused.com/pages/resources-essential-questions-101
+- Before giving an instruction or starting with a project, it is important to clearly state the learning goal
+    - the learning goal for me is to 
+
+# From FreeCodeCamp - https://www.freecodecamp.org/news/how-to-build-a-movie-recommendation-system-based-on-collaborative-filtering/
+- In machine learning, two primary methods of building recommendation engines are Content-based and Collaborative filtering methods.
+    - C-B methods rely on the the likability or purchased rate of products by one user
+        - the information the model recieves can include search history, bookmarked/wishlisted items and their already purchased record
+        - Some recommendation models decide to focus on the items you have boughts, or movies you have watched, but how does this open 
+            you to other fields of movies or different items? It doesn't?
+    - C For methods rely on similar users' likability or purchased rate of products. Defining what "similar users" mean is also up to the 
+        developer or the algorithm and this just a greater chance for variety exposure.
+        - this data can also include bookmarked movies/products, or watched movies products 
+        - this how you get opened to newer products or movie genres
+
+# From IBM - https://www.ibm.com/think/topics/predictive-analytics?utm_content=SRCWW&p1=Search&p4=511745555434&p5=e&p9=147931284467&gclsrc=aw.ds&gad_source=1&gad_campaignid=19477235036&gclid=CjwKCAjw-svEBhB6EiwAEzSdrjmJveXGIQf4gzTPiHCtcQQWSEvRT00uHSTrJ50w6hMQAF2oeyaCRBoCNI0QAvD_BwE
+- Predictive models allow us to tell the future, put simply. This can be done by using historical data, trends and patterns in data.
+    - Following the route of supervised learning, PM chategorize data based on certain crierias. In my case this can be based on whether 
+        the movie was watched, a specific rating, or back to the car example, if the car is manual or automatic.
+    - These models usually give a binary style output, true or false, yes or no
+
+# From KD Nuggets
+- Ways to improve my predictive model includes:
+    - Selecting relevant features
+        - knowing which ones to use as the inputs
+        - the most influential variables
+    - Cleaning data appropriately
+        - deleting atypical values, irrelevant columns or rows or value types
+        - normalizing data, which means:
+            - removing any inconsistent data
+            - removing reuccuring similar data or unstructured data
+    - Exploring many more models
+        - using cross evaluation so the model can learn from the data they have been exposed to
+
+
+
+# How project was accomplished
+- using a model focused on supervised learning
+    - classifying the movies in two classes, watched (0) or not watched (1), which was done randomly (random sample) 
+        (a little difficult to manually go over 7500 movies trying to determine if I've watched them 
+        or not). I was doing it with the assumption that this is what a user would pick
+- My inputs and output
+    - Using, movie rating (over 10) and duration (in mins) to determine if a movie was selected watched or not
+- Model Creation
+    - I decided use a logistic regression which would review the ratings and duration columns and determine if the movie, based on those columns
+        is marked watched or not.
+    - Explain why you used logistic regression
+    - It returns a value between 0 and 1 representing the probability of the input (ratings and duration for that movie) being in the set of 
+        watched movies 
+- Checking with new random movie
+    - then at the end I create a random movie using random values
+- Training and testing:
+    - making sure to use a k-fold approach when training the data on 80% of the data and then spliting into 5 groups
+- Results
+    - explain the picture
+    - go over the test example movie and say what it means
+        - Which means that based on the model and what it is testing on, there is a {prob:.2%} chance 
+            that the movie will be watched by the user                              49.19%
+
+# Data Visualization
+- Bar Plot (first)
+    - Displaying the ratio of movies selected as watched vs not watched
+- Box Plot (second)
+    - 50% of the ratings for watched or unwatched was between 6 and 8 with a median of 6.9
+    - Top is the 25% and bottom is the other 25%
+    - Values below or above the T shaped sections are outliers
+- Feature Correlation Heatmap (third)
+    - closer to -1 means strong negatice correlation
+    - closer to +1 means strong positive correlation
+    - -0.84 shows strong negative correlation which 
+        gives low probabilities to high rated movies 
+- Histogram (fourth/last)
+    - each bar showing the count for each probability level 
+     
+
+# Bias
+- Model Classigfication and choice
+    - I randomly sampled 50% as watched which is promoted label bias. There was no patern and it could have gone any way.
+    - I could have reseached more about using different models and experimenting with it
+- Model Creation and inneficiency
+    - The input was created using movie duration and rating which is a good start but not diverse enough to go off on when trying
+        to determine if a movie's watchability as I neglected to consider other numerical criterias. 
+
+# Next Steps
+- Serious model change would be appropriate.
+- Making sure the use of more numerical criterias are explored
+- Launching it as a website or a mobile application
+- Try to make it more personalized by inclusing real data from 
+    real users and see using actual watched values could help 
+    predict potential new watches
+
